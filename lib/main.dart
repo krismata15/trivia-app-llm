@@ -23,8 +23,10 @@ void main() async {
         baseUrl: 'http://127.0.0.1:8080/',
         connectTimeout: const Duration(seconds: 30),
         receiveTimeout: const Duration(seconds: 30),
+        contentType: 'application/json',
         headers: {
           'Content-Type': 'application/json',
+          'Accept': '*/*',
           'Access-Control-Allow-Origin': '*',
           'Access-Control-Allow-Headers':
               'Origin, X-Requested-With, Content-Type, Accept'
@@ -33,6 +35,7 @@ void main() async {
     )..interceptors.add(
         PrettyDioLogger(
           requestBody: true,
+          requestHeader: true,
         ),
       ),
   );

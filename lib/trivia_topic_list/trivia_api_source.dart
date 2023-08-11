@@ -13,7 +13,7 @@ class TriviaApiSource {
       final response = await dio.get<Map<String, dynamic>>(url);
 
       return TriviaTopicList.fromJson(response.data!['data']).triviaTopics;
-    } catch (e, s) {
+    } catch (e) {
       rethrow;
     }
   }
@@ -31,7 +31,7 @@ class TriviaApiSource {
       );
 
       return TriviaQuestion.fromJson(response.data!['data']);
-    } catch (e, s) {
+    } catch (e) {
       rethrow;
     }
   }
