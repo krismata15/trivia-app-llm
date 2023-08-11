@@ -103,11 +103,13 @@ class _TriviaQuestionsPageState extends State<TriviaQuestionsPage> {
                                               .elementAt(index);
                                         });
                                       },
-                                      leading: Radio(
-                                        value: state.triviaQuestion!.options!
-                                            .elementAt(index),
-                                        onChanged: (value) {},
-                                        groupValue: _selectedAnswer,
+                                      leading: AbsorbPointer(
+                                        child: Radio(
+                                          value: state.triviaQuestion!.options!
+                                              .elementAt(index),
+                                          onChanged: (value) {},
+                                          groupValue: _selectedAnswer,
+                                        ),
                                       ),
                                       title: Text(
                                         state.triviaQuestion!.options!
