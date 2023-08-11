@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -5,13 +6,35 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:llm_trivia/auth/bloc/authentication_bloc.dart';
 import 'package:llm_trivia/auth/login_anonymously_page.dart';
+import 'package:llm_trivia/dio_service.dart';
 import 'package:llm_trivia/firebase_options.dart';
 import 'package:llm_trivia/home_screen.dart';
+import 'package:llm_trivia/trivia_questions/trivia_questions_page.dart';
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
+  );
+  DioService().init(
+    Dio(
+      BaseOptions(
+        baseUrl: 'http://127.0.0.1:8080/',
+        connectTimeout: const Duration(seconds: 30),
+        receiveTimeout: const Duration(seconds: 30),
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Headers':
+              'Origin, X-Requested-With, Content-Type, Accept'
+        },
+      ),
+    )..interceptors.add(
+        PrettyDioLogger(
+          requestBody: true,
+        ),
+      ),
   );
   runApp(const App());
 }
@@ -51,11 +74,22 @@ final _router = GoRouter(
       },
       routes: [
         GoRoute(
-          path: 'login',
-          name: 'login',
-          builder: (context, state) => const LoginAnonymouslyPage(),
+          path: 'trivia/:trivia_topic',
+          builder: (context, state) => TriviaQuestionsPage(
+            triviaTopic: state.pathParameters['trivia_topic']!,
+          ),
         ),
       ],
+    ),
+    GoRoute(
+      path: '/login',
+      builder: (context, state) => const LoginAnonymouslyPage(),
+      redirect: (context, state) {
+        if (FirebaseAuth.instance.currentUser != null) {
+          return '/';
+        }
+        return null;
+      },
     ),
   ],
 );

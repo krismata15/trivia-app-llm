@@ -34,9 +34,7 @@ class _LoginAnonymouslyPageState extends State<LoginAnonymouslyPage> {
         }
 
         if (state is AuthenticationAuthenticated) {
-          if (widget.guardedRoute != null) {
-            context.go(widget.guardedRoute!);
-          }
+          context.go('/');
         }
       },
       child: Scaffold(
@@ -67,6 +65,13 @@ class _LoginAnonymouslyPageState extends State<LoginAnonymouslyPage> {
               ),
               Center(
                 child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    minimumSize: const Size(200, 50),
+                    textStyle: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
                   onPressed: validUsername
                       ? () {
                           context.read<AuthenticationBloc>().add(
