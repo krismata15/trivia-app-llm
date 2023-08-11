@@ -31,8 +31,9 @@ class _TriviaQuestionsPageState extends State<TriviaQuestionsPage> {
                 listener: (context, state) {
                   if (state is TriviaQuestionsError) {
                     ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(state.errorMessage),
+                      const SnackBar(
+                        content: Text(
+                            'Try in another time, maybe you already reached the limit of questions'),
                       ),
                     );
                   }
