@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "301741157369",
+    "project_id": "proyecto-llm",
+    "storage_bucket": "proyecto-llm.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:301741157369:android:033eac6562beb4ee04eb28",
+        "android_client_info": {
+          "package_name": "com.kdata.llm_trivia"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "301741157369-412hg1t0h3hj5lr4i7st8qttlafos770.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD2rrYccbGq86lgYF4lvnfWuWWB8yPkTYc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "301741157369-412hg1t0h3hj5lr4i7st8qttlafos770.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "301741157369-755rq6vbdhk22cfehlqp98vg7h5lqodt.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.kdata.llmTrivia.RunnerTests"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
